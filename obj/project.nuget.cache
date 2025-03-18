@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "Vyy0v/2RZe8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\longh\\EUDAMED_ProductDetailScraper\\EUDAMED_ProductDetailScraper.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\longh\\.nuget\\packages\\closedxml\\0.104.2\\closedxml.0.104.2.nupkg.sha512",
+    "C:\\Users\\longh\\.nuget\\packages\\closedxml.parser\\1.2.0\\closedxml.parser.1.2.0.nupkg.sha512",
+    "C:\\Users\\longh\\.nuget\\packages\\documentformat.openxml\\3.1.1\\documentformat.openxml.3.1.1.nupkg.sha512",
+    "C:\\Users\\longh\\.nuget\\packages\\documentformat.openxml.framework\\3.1.1\\documentformat.openxml.framework.3.1.1.nupkg.sha512",
+    "C:\\Users\\longh\\.nuget\\packages\\excelnumberformat\\1.1.0\\excelnumberformat.1.1.0.nupkg.sha512",
+    "C:\\Users\\longh\\.nuget\\packages\\rbush\\4.0.0\\rbush.4.0.0.nupkg.sha512",
+    "C:\\Users\\longh\\.nuget\\packages\\selenium.support\\4.29.0\\selenium.support.4.29.0.nupkg.sha512",
+    "C:\\Users\\longh\\.nuget\\packages\\selenium.webdriver\\4.29.0\\selenium.webdriver.4.29.0.nupkg.sha512",
+    "C:\\Users\\longh\\.nuget\\packages\\selenium.webdriver.chromedriver\\134.0.6998.8800\\selenium.webdriver.chromedriver.134.0.6998.8800.nupkg.sha512",
+    "C:\\Users\\longh\\.nuget\\packages\\selenium.webdriver.extensions\\4.1.0\\selenium.webdriver.extensions.4.1.0.nupkg.sha512",
+    "C:\\Users\\longh\\.nuget\\packages\\seleniumextras.waithelpers\\1.0.2\\seleniumextras.waithelpers.1.0.2.nupkg.sha512",
+    "C:\\Users\\longh\\.nuget\\packages\\sixlabors.fonts\\1.0.0\\sixlabors.fonts.1.0.0.nupkg.sha512",
+    "C:\\Users\\longh\\.nuget\\packages\\system.io.packaging\\8.0.1\\system.io.packaging.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
