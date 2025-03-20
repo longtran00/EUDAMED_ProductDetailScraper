@@ -29,3 +29,4 @@ C:\Users\longh\EUDAMED_ProductDetailScraper\obj\Debug\net9.0\refint\EUDAMED_Prod
 C:\Users\longh\EUDAMED_ProductDetailScraper\obj\Debug\net9.0\EUDAMED_ProductDetailScraper.pdb
 C:\Users\longh\EUDAMED_ProductDetailScraper\obj\Debug\net9.0\EUDAMED_ProductDetailScraper.genruntimeconfig.cache
 C:\Users\longh\EUDAMED_ProductDetailScraper\obj\Debug\net9.0\ref\EUDAMED_ProductDetailScraper.dll
+C:\Users\longh\EUDAMED_ProductDetailScraper\obj\Debug\net9.0\EUDAMED_ProductDetailScraper.sourcelink.json

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EUDAMED_ProductDetailScraper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c233351e7d5e2487549489a461e668ad5c12265")]
 [assembly: System.Reflection.AssemblyProductAttribute("EUDAMED_ProductDetailScraper")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EUDAMED_ProductDetailScraper")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
