@@ -324,7 +324,7 @@ namespace EudamedAutomation
                                 // Extract the Version
                                 //
 
-                                var versionElement = wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("(//ul[@id='versionStatus']/li/strong)[1]")));
+                                var versionElement = wait.Until(d => d.FindElement(By.XPath("(//ul[contains(@id,'versionStatus')]//strong)[1]")));
                                 var versionText = versionElement.Text;
                                 Console.WriteLine("Version: " + versionText);
 
@@ -334,38 +334,32 @@ namespace EudamedAutomation
 
 
                                 // Extract the Last Update Date
-                                var lastUpdateElement = wait.Until(d => d.FindElement(By.XPath("(//ul[@id='versionStatus']/li[contains(text(), 'Last update date:')])[1]")));
+                                var lastUpdateElement = wait.Until(d => d.FindElement(By.XPath("(//ul[contains(@id,'versionStatus')]//li[contains(., 'Last update date')])[1]")));
                                 var lastUpdateText = lastUpdateElement.Text.Replace("Last update date: ", "").Trim();
                                 Console.WriteLine("Last Update Date: " + lastUpdateText);
 
                                 // Extract the Actor/Organisation name
-                                var actorNameElement = wait.Until(d => d.FindElement(By.XPath("(//dt[text()='Actor/Organisation name']/following-sibling::dd/div)[1]")));
-                                var actorNameText = actorNameElement.Text;
+                                var actorNameText = GetDetailValue(wait, "Actor/Organisation name");
                                 Console.WriteLine("Actor/Organisation Name: " + actorNameText);
 
                                 // Extract the Actor ID/SRN
-                                var actorIdElement = wait.Until(d => d.FindElement(By.XPath("//dt[text()='Actor ID/SRN']/following-sibling::dd/div")));
-                                var actorIdText = actorIdElement.Text.Trim();
+                                var actorIdText = GetDetailValue(wait, "Actor ID/SRN");
                                 Console.WriteLine("Actor ID/SRN: " + actorIdText);
 
                                 // Extract the Address
-                                var addressElement = wait.Until(d => d.FindElement(By.XPath("//dt[text()='Address']/following-sibling::dd/div")));
-                                var addressText = addressElement.Text.Trim();
+                                var addressText = GetDetailValue(wait, "Address");
                                 Console.WriteLine("Address: " + addressText);
 
                                 // Extract the Country
-                                var countryElement = wait.Until(d => d.FindElement(By.XPath("//dt[text()='Country']/following-sibling::dd/div")));
-                                var countryText = countryElement.Text.Trim();
+                                var countryText = GetDetailValue(wait, "Country");
                                 Console.WriteLine("Country: " + countryText);
 
                                 // Extract the Telephone number
-                                var telephoneElement = wait.Until(d => d.FindElement(By.XPath("//dt[text()='Telephone number']/following-sibling::dd/div")));
-                                var telephoneText = telephoneElement.Text.Trim();
+                                var telephoneText = GetDetailValue(wait, "Telephone number");
                                 Console.WriteLine("Telephone Number: " + telephoneText);
 
                                 // Extract the Email
-                                var emailElement = wait.Until(d => d.FindElement(By.XPath("//dt[text()='Email']/following-sibling::dd/div")));
-                                var emailText = emailElement.Text.Trim();
+                                var emailText = GetDetailValue(wait, "Email");
                                 Console.WriteLine("Email: " + emailText);
                                 //
                                 ////Basic UDI-DI details
@@ -423,222 +417,75 @@ namespace EudamedAutomation
 
                                 ////Kit
 
-                                string kitElement = "//dt[contains(text(), 'Kit')]/following-sibling::dd/div";
-                                string kitText = "";
-
-                                try
-                                {
-                                    kitText = driver.FindElement(By.XPath(kitElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Kit not found. Leaving it empty.");
-                                }
+                                string kitText = GetDetailValue(wait, "Kit");
 
                                 Console.WriteLine("Kit: " + kitText);
 
                                 //// Extract System/Procedure
                                 //
-                                string systemProcedureElement = "//dt[contains(text(), 'System')]/following-sibling::dd/div";
-                                string systemProcedure = "";
-
-                                try
-                                {
-                                    systemProcedure = driver.FindElement(By.XPath(systemProcedureElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("System/Procedure which is a device in itself not found. Leaving it empty.");
-                                }
+                                string systemProcedure = GetDetailValue(wait, "System");
                                 Console.WriteLine("System/Procedure which is a device in itself: " + systemProcedure);
                                 //
                                 //// Extract Authorised Representative
                                 //
-                                string authorisedRepElement = "//dt[contains(text(), 'Authorised representative')]/following-sibling::dd/div";
-                                string authorisedRep = "";
-
-                                try
-                                {
-                                    authorisedRep = driver.FindElement(By.XPath(authorisedRepElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Authorised representative not found. Leaving it empty.");
-                                }
-
+                                string authorisedRep = GetDetailValue(wait, "Authorised representative");
                                 Console.WriteLine("Authorised representative: " + authorisedRep);
 
 
                                 ////Special device type
 
-                                string specDevTypeElement = "//dt[contains(text(), 'Special device Type')]/following-sibling::dd/div";
-                                string specDevTypeText = "";
-
-                                try
-                                {
-                                    specDevTypeText = driver.FindElement(By.XPath(specDevTypeElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Special device type not found. Leaving it empty.");
-                                }
-
+                                string specDevTypeText = GetDetailValue(wait, "Special device Type");
                                 Console.WriteLine("Special device type: " + specDevTypeText);
 
 
 
                                 //// Extract Risk Class
-                                string riskClassElement = "//dt[contains(text(), 'Risk class')]/following-sibling::dd/div";
-                                string riskClass = "";
-                                try
-                                {
-                                    riskClass = driver.FindElement(By.XPath(riskClassElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Implantable not found. Leaving it empty.");
-                                }
-
+                                string riskClass = GetDetailValue(wait, "Risk class");
                                 Console.WriteLine("Risk Class: " + riskClass);
 
                                 //// Extract Implantable
 
-                                string implantableElement = "//dt[contains(text(), 'Implantable')]/following-sibling::dd/div";
-                                string implantable = "";
-
-                                try
-                                {
-                                    implantable = driver.FindElement(By.XPath(implantableElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Implantable not found. Leaving it empty.");
-                                }
+                                string implantable = GetDetailValue(wait, "Implantable");
 
                                 Console.WriteLine("Implantable: " + implantable);
 
 
                                 //// Extract Suture/Staple Device
 
-                                string sutureElement = "//dt[contains(text(), 'Is the device a suture, ')]/following-sibling::dd/div";
-                                string sutureDevice = "";
-
-                                try
-                                {
-                                    sutureDevice = driver.FindElement(By.XPath(sutureElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Suture device status not found. Leaving it empty.");
-                                }
+                                string sutureDevice = GetDetailValue(wait, "Is the device a suture");
                                 Console.WriteLine("Is the device a suture/staple/etc: " + sutureDevice);
                                 //
                                 //// Extract Measuring Function
 
-                                string measuringFunctionElement = "//dt[contains(text(), 'Measuring function')]/following-sibling::dd/div";
-                                string measuringFunction = "";
-
-                                try
-                                {
-                                    measuringFunction = driver.FindElement(By.XPath(measuringFunctionElement)).Text.Trim();
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Measuring Function not found. Leaving it empty.");
-                                }
+                                string measuringFunction = GetDetailValue(wait, "Measuring function");
                                 Console.WriteLine("Measuring Function: " + measuringFunction);
                                 //
                                 //// Extract Reusable Surgical Instrument
 
-                                string reusableInstrumentElement = "//dt[contains(text(), 'Reusable surgical instrument')]/following-sibling::dd/div";
-                                string reusableInstrument = "";
-
-                                try
-                                {
-                                    reusableInstrument = driver.FindElement(By.XPath(reusableInstrumentElement)).Text.Trim();
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Reusable Surgical Instrument not found. Leaving it empty.");
-                                }
-
+                                string reusableInstrument = GetDetailValue(wait, "Reusable surgical instrument");
                                 Console.WriteLine("Reusable Surgical Instrument: " + reusableInstrument);
                                 //
                                 // Extract Active Device
 
-                                string activeDeviceElement = "//dt[contains(text(), 'Active device')]/following-sibling::dd/div";
-                                string activeDevice = "";
-
-                                try
-                                {
-                                    activeDevice = driver.FindElement(By.XPath(activeDeviceElement)).Text.Trim();
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Active Device not found. Leaving it empty.");
-                                }
+                                string activeDevice = GetDetailValue(wait, "Active device");
                                 Console.WriteLine("Active Device: " + activeDevice);
 
                                 // Extract Device Intended to Administer Medicinal Product
 
-                                string adminDeviceElement = "//dt[contains(text(), 'Device intended to administer and / or remove medicinal product')]/following-sibling::dd/div";
-                                string adminDevice = "";
-
-                                try
-                                {
-                                    adminDevice = driver.FindElement(By.XPath(adminDeviceElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Device Intended to Administer Medicinal Product not found. Leaving it empty.");
-                                }
+                                string adminDevice = GetDetailValue(wait, "Device intended to administer and / or remove medicinal product");
                                 Console.WriteLine("Device Intended to Administer Medicinal Product: " + adminDevice);
 
 
 
                                 ////Companion diagnostic
 
-                                string compDiagElement = "//dt[contains(text(), 'Companion diagnostic')]/following-sibling::dd/div";
-                                string compDiagText = "";
-
-                                try
-                                {
-                                    compDiagText = driver.FindElement(By.XPath(compDiagElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Companion diagnostic not found. Leaving it empty.");
-                                }
-
+                                string compDiagText = GetDetailValue(wait, "Companion diagnostic");
                                 Console.WriteLine("Companion diagnostic: " + compDiagText);
 
                                 ////Near patient testing
 
                                 string nearPatTestElement = "//dt[contains(text(), 'Near patient testing')]/following-sibling::dd/div";
-                                string nearPatTestText = "";
-
-                                try
-                                {
-                                    nearPatTestText = driver.FindElement(By.XPath(nearPatTestElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Near patient testing not found. Leaving it empty.");
-                                }
-
+                                string nearPatTestText = GetDetailValue(wait, "Near patient testing");
                                 Console.WriteLine("Near patient testing: " + nearPatTestText);
 
 
@@ -646,55 +493,19 @@ namespace EudamedAutomation
                                 ///
 
 
-                                string patSelfTestElement = "//dt[contains(text(), 'Patient self testing')]/following-sibling::dd/div";
-                                string patSelfTestText = "";
-
-                                try
-                                {
-                                    patSelfTestText = driver.FindElement(By.XPath(patSelfTestElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Near patient testing not found. Leaving it empty.");
-                                }
-
+                                string patSelfTestText = GetDetailValue(wait, "Patient self testing");
                                 Console.WriteLine("Patient self testing: " + patSelfTestText);
 
 
                                 ////Professional testing
 
-                                string profTestElement = "//dt[contains(text(), 'Professional testing')]/following-sibling::dd/div";
-                                string profTestText = "";
-
-                                try
-                                {
-                                    profTestText = driver.FindElement(By.XPath(profTestElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Professional testing not found. Leaving it empty.");
-                                }
-
+                                string profTestText = GetDetailValue(wait, "Professional testing");
                                 Console.WriteLine("Professional testing: " + profTestText);
 
 
                                 ////Reagent
 
-                                string reagentElement = "//dt[contains(text(), 'Reagent')]/following-sibling::dd/div";
-                                string reagentText = "";
-
-                                try
-                                {
-                                    reagentText = driver.FindElement(By.XPath(reagentElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Reagent not found. Leaving it empty.");
-                                }
-
+                                string reagentText = GetDetailValue(wait, "Reagent");
                                 Console.WriteLine("Reagent: " + reagentText);
 
 
@@ -702,37 +513,13 @@ namespace EudamedAutomation
 
 
 
-                                string InstrumentElement = "//dt[contains(text(), 'Instrument')]/following-sibling::dd/div";
-                                string InstrumentText = "";
-
-                                try
-                                {
-                                    InstrumentText = driver.FindElement(By.XPath(InstrumentElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Instrument not found. Leaving it empty.");
-                                }
-
+                                string InstrumentText = GetDetailValue(wait, "Instrument");
                                 Console.WriteLine("Instrument: " + InstrumentText);
 
 
                                 ////Device model 
 
-                                string deviceModelElement = "//dt[contains(text(), 'Device model')]/following-sibling::dd/div";
-                                string deviceModelText = "";
-
-                                try
-                                {
-                                    deviceModelText = driver.FindElement(By.XPath(deviceModelElement)).Text;
-                                }
-                                catch (NoSuchElementException)
-                                {
-                                    // If the element is not found, leave versionText4 as empty
-                                    Console.WriteLine("Device model not found. Leaving it empty.");
-                                }
-
+                                string deviceModelText = GetDetailValue(wait, "Device model");
                                 Console.WriteLine("Device model: " + deviceModelText);
 
 
@@ -742,8 +529,7 @@ namespace EudamedAutomation
 
 
                                 // Extract Device Name
-                                var deviceNameElement = wait.Until(d => d.FindElement(By.XPath("//dt[contains(text(), 'Device name')]/following-sibling::dd/div")));
-                                var deviceName = deviceNameElement.Text.Trim();
+                                var deviceName = GetDetailValue(wait, "Device name");
                                 Console.WriteLine("Device Name: " + deviceName);
 
                                 ////Tissues and cells
@@ -1550,6 +1336,20 @@ namespace EudamedAutomation
             catch (NoSuchElementException)
             {
                 Console.WriteLine($"Page {pageNumber} button not found!");
+            }
+        }
+
+        static string GetDetailValue(WebDriverWait wait, string label)
+        {
+            try
+            {
+                var element = wait.Until(d => d.FindElement(By.XPath($"//dt[contains(normalize-space(), \"{label}\")]/following-sibling::dd[1]")));
+                return element.Text.Trim();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine($"{label} not found. Leaving it empty.");
+                return string.Empty;
             }
         }
     }
